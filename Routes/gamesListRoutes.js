@@ -1,10 +1,10 @@
 const express = require("express");
-const { GamesListModel, validateGamesList } = require("../Models/gamesList");
+const { GamesListModel } = require("../Models/gamesList");
 const router = express.Router();
 
 router.get("/", async(req,res) => {
   try{
-    let data = await GamesListModel.find({}).limit(20);
+    let data = await GamesListModel.find({});
     res.json(data);
   }
   catch(err){
@@ -26,10 +26,7 @@ router.get("/single/:id", async(req,res) => {
 })
 
 router.post("/", async(req,res) => {
-  let validBody = validateGamesList(req.body);
-  if(validBody.error) {
-    return res.status(400).json(validBody.error.details);
-  }
+ 
   try {
     let GamesList = new GamesListModel(req.body);
     await GamesList.save();
@@ -42,10 +39,7 @@ router.post("/", async(req,res) => {
 })
 
 router.put("/:id", async(req,res) => {
-  let validBody = validateGamesList(req.body);
-  if(validBody.error) {
-    return res.status(400).json(validBody.error.details);
-  }
+  
   try {
    let id = req.params.id;
    let data = await GamesListModel.updateOne({_id:id},req.body);
