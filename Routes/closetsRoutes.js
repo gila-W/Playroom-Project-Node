@@ -12,19 +12,6 @@ router.get("/", async(req,res) => {
     res.status(502).json({err})
   }
 })
-
-router.get("/single/:id", async(req,res) => {
-  try{
-    const id = req.params.id
-    let data = await ClosetModel.findOne({_id:id});
-    res.json(data);
-  }
-  catch(err){
-    console.log(err);
-    res.status(502).json({err})
-  }
-})
-
 router.post("/", async(req,res) => {
   let validBody = validateCloset(req.body);
   if(validBody.error) {
@@ -42,21 +29,31 @@ router.post("/", async(req,res) => {
 })
 
 router.put("/:id", async(req,res) => {
-  let validBody = validateCloset(req.body);
-  if(validBody.error) {
-    return res.status(400).json(validBody.error.details);
-  }
   try {
    let id = req.params.id;
-   let data = await ClosetModel.updateOne({_id:id},req.body);
-  res.json(data)
+   await ClosetModel.updateOne({closetCode:id},req.body);
+     let updateObject=await ClosetModel.findOne({closetCode:id});
+
+  res.json(updateObject)
   }
   catch(err) {
     console.log(err);
     res.status(502).json( {err})
   }
 })
-
+router.delete("/:id", async (req, res) => {
+  try {
+    const id = req.params.id;
+    const { locationToRemove } = req.body; // Assuming you send the location to remove in the request body
+    const closet = await ClosetModel.findById(id);
+    closet.emptyPlace = closet.emptyPlace.filter((place) => place !== locationToRemove);
+    await closet.save();
+    res.json(closet);
+  } catch (err) {
+    console.log(err);
+    res.status(502).json({ err });
+  }
+});
 router.delete("/:id", async(req,res) => {
   try {
     let id = req.params.id;
