@@ -42,7 +42,7 @@ router.put("/:id", async(req,res) => {
   
   try {
    let id = req.params.id;
-   let data = await TakingOrReturningModel.updateOne({_id:id},req.body);
+   let data = await TakingOrReturningModel.updateOne({ReturnID:id},{$set:req.body});
   res.json(data)
   }
   catch(err) {

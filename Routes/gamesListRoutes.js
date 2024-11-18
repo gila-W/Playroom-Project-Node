@@ -42,7 +42,9 @@ router.put("/:id", async(req,res) => {
   
   try {
    let id = req.params.id;
-   let data = await GamesListModel.updateOne({_id:id},req.body);
+   let updateField = req.body.GameCode ? { GameCode: id } : { Id: id };
+
+   let data = await GamesListModel.updateOne(updateField,{$set: req.body });
   res.json(data)
   }
   catch(err) {
