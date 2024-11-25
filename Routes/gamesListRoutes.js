@@ -16,7 +16,7 @@ router.get("/", async(req,res) => {
 router.get("/single/:id", async(req,res) => {
   try{
     const id = req.params.id
-    let data = await GamesListModel.findOne({_id:id});
+    let data = await GamesListModel.findOne({Id:id});
     res.json(data);
   }
   catch(err){
@@ -41,16 +41,15 @@ router.post("/", async(req,res) => {
 router.put("/:id", async(req,res) => {
   
   try {
-   let id = req.params.id;
-   let updateField = req.body.GameCode ? { GameCode: id } : { Id: id };
-
-   let data = await GamesListModel.updateOne(updateField,{$set: req.body });
-  res.json(data)
-  }
-  catch(err) {
-    console.log(err);
-    res.status(502).json( {err})
-  }
+    let id = req.params.id;
+    await GamesListModel.updateOne({GameCode:id},{$set:req.body});
+    let updateObject=await GamesListModel.findOne({GameCode:id});
+    res.json(updateObject)
+   }
+   catch(err) {
+     console.log(err);
+     res.status(502).json( {err})
+   }
 })
 
 router.delete("/:id", async(req,res) => {
