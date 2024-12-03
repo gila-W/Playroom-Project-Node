@@ -22,7 +22,7 @@ router.post("/", async (req, res) => {
   try {
     let Game = new GamesWithMissingPartsModel(req.body);
     await Game.save();
-    res.json(User)
+    res.json(Game)
   }
   catch (err) {
  
@@ -35,8 +35,10 @@ router.put("/:id", async(req,res) => {
  
   try {
    let id = req.params.id;
-   await GamesWithMissingPartsModel.updateOne({Id:id},req.body);
-   let updateObject = await GamesWithMissingPartsModel.findOne({Id:id});
+  //  await GamesWithMissingPartsModel.updateOne({Id:id},req.body);
+  await GamesWithMissingPartsModel.replaceOne({ Id: id },req.body);
+
+  let updateObject = await GamesWithMissingPartsModel.findOne({Id:id});
 
    res.json(updateObject)
   }
