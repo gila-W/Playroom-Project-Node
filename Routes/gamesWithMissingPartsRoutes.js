@@ -21,7 +21,7 @@ router.post("/", async (req, res) => {
   try {
     let Game = new GamesWithMissingPartsModel(req.body);
     await Game.save();
-    res.json(User);
+    res.json(Game);
   } catch (err) {
     console.log(err);
     res.status(502).json({ err });
@@ -31,9 +31,8 @@ router.post("/", async (req, res) => {
 router.put("/:id", async (req, res) => {
   try {
     let id = req.params.id;
-    await GamesWithMissingPartsModel.updateOne({ Id: id }, req.body);
+    await GamesWithMissingPartsModel.replaceOne({ Id: id }, req.body);
     let updateObject = await GamesWithMissingPartsModel.findOne({ Id: id });
-
     res.json(updateObject);
   } catch (err) {
     console.log(err);
