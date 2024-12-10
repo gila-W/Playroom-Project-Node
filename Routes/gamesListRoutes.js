@@ -22,7 +22,6 @@ router.get("/single/:id", async (req, res) => {
     res.status(502).json({ err });
   }
 });
-
 router.post("/", async (req, res) => {
   try {
     let GamesList = new GamesListModel(req.body);
@@ -33,7 +32,6 @@ router.post("/", async (req, res) => {
     res.status(502).json({ err });
   }
 });
-
 router.put("/:id", async (req, res) => {
   try {
     let id = req.params.id;
