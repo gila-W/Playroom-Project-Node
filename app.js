@@ -8,20 +8,22 @@ require("./DB/mongoConnection");
 const { routesInit } = require("./Routes/configRoutes");
 const path = require("path");
 const cors = require("cors");
-// const corsOptions = {
-//   origin:"https://mshkhqvlnv.onrender.com/",
-//   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",};
-// app.use(cors(corsOptions));
 app.use(cors());
 const bodyParser = require("body-parser");
 app.use(bodyParser.json());
 app.use(cors({ origin: "http://localhost:3000" }));
 app.use(myExpress.static(path.join(__dirname, "public")));
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  next();
+});
+
 routesInit(app);
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
 });
 const server = http.createServer(app);
 app.get("/", (req, res) => {
-  // res.send("<html><h1>מחובר</h1></html>")
 });
