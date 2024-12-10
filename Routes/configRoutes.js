@@ -3,6 +3,7 @@ const usersR=require('./userRoutes');
 const tipesOfGamesR=require('./tipesOfGamesRoutes');
 const userstakingOrReturningR=require('./takingOrReturningRoutes');
 const gamesListR=require('./gamesListRoutes');
+const gamesWithMissingPartsR=require('./gamesWithMissingPartsRoutes');
 const finesR=require('./finesRoutes');
 const closetsR=require('./closetsRoutes');
 const forAgesR=require('./forAgesRoutes');
@@ -15,6 +16,7 @@ exports.routesInit =(app)=>{
     app.use("/tipesOfGamesRoutes",tipesOfGamesR);
     app.use("/takingOrReturningRoutes",userstakingOrReturningR);
     app.use("/gamesListRoutes",gamesListR);
+    app.use("/gamesWithMissingPartsRoutes",gamesWithMissingPartsR);
     app.use("/closetsRoutes",closetsR);
     app.use("/forAgesRoutes",forAgesR);
     app.use("/finesForMissingPartsRoutes",finesForMissingPartsR);

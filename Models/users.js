@@ -13,6 +13,6 @@ usersschema = new mongoose.Schema({
   accountNumber: String,
   checkNumber: String,
   branchNumber: String,
-  email: String,
+  email:String,
 });
 exports.UserModel = mongoose.model("Users", usersschema);
