@@ -12,7 +12,6 @@ router.get("/", async(req,res) => {
     res.status(502).json({err})
   }
 })
-
 router.get("/single/:id", async(req,res) => {
   try{
     const id = req.params.id
