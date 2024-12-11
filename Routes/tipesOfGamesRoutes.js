@@ -26,7 +26,6 @@ router.get("/single/:id", async(req,res) => {
 })
 
 router.post("/", async(req,res) => {
-  
   try {
     let TipesOfGame = new TipesOfGameModel(req.body);
     await TipesOfGame.save();
@@ -39,7 +38,6 @@ router.post("/", async(req,res) => {
 })
 
 router.put("/:id", async(req,res) => {
- 
   try {
    let id = req.params.id;
    let data = await TipesOfGameModel.updateOne({_id:id},req.body);

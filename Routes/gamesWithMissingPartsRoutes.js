@@ -4,7 +4,6 @@ const {
 } = require("../Models/gamesWithMissingParts");
 const app = express();
 const router = express.Router();
-
 app.use(express.json());
 
 router.get("/", async (req, res) => {

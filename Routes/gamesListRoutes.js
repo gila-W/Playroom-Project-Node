@@ -23,10 +23,9 @@ router.get("/single/:id", async(req,res) => {
     console.log(err);
     res.status(502).json({err})
   }
-})
+});
 
-router.post("/", async(req,res) => {
- 
+router.post("/", async (req, res) => {
   try {
     let GamesList = new GamesListModel(req.body);
     await GamesList.save();
@@ -36,12 +35,18 @@ router.post("/", async(req,res) => {
     console.log(err);
     res.status(502).json( {err})
   }
-})
+});
 
-router.put("/:id", async(req,res) => {
-  
+router.put("/:id", async (req, res) => {
   try {
     let id = req.params.id;
+    let additionalParam = req.body.bool;
+    let identifier;
+    if (additionalParam === true) {
+       identifier = { Id: id };
+    } else {
+       identifier = { GameCode: id };
+    }
     await GamesListModel.updateOne({GameCode:id},{$set:req.body});
     let updateObject=await GamesListModel.findOne({GameCode:id});
     res.json(updateObject)
@@ -65,3 +70,4 @@ router.delete("/:id", async(req,res) => {
 })
 
 module.exports = router;
+

@@ -16,3 +16,4 @@ usersschema = new mongoose.Schema({
   email:String,
 });
 exports.UserModel = mongoose.model("Users", usersschema);
+
