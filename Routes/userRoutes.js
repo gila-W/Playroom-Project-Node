@@ -30,7 +30,7 @@ router.post("/", async (req, res) => {
 router.put("/:id", async(req,res) => {
   try {
    let id = req.params.id;
-   let data = await UserModel.updateOne({_id:id},req.body);
+   let data = await UserModel.updateOne({userCode:id},req.body);
   res.json(data)
   }
   catch(err) {
