@@ -47,8 +47,8 @@ router.put("/:id", async (req, res) => {
     } else {
        identifier = { GameCode: id };
     }
-    await GamesListModel.updateOne({GameCode:id},{$set:req.body});
-    let updateObject=await GamesListModel.findOne({GameCode:id});
+    await GamesListModel.updateOne(identifier,{$set:req.body});
+    let updateObject=await GamesListModel.findOne(identifier);
     res.json(updateObject)
    }
    catch(err) {
