@@ -2,9 +2,8 @@ const express = require("express");
 const { ForAgesModel } = require("../Models/forAges");
 const app = express();
 const router = express.Router();
-
-
 app.use(express.json());
+
 router.get("/", async(req,res) => {
   try{
     const data = await ForAgesModel.find({});
@@ -16,9 +15,7 @@ router.get("/", async(req,res) => {
   }
 })
 
-
 router.post("/", async (req, res) => {
-  
   try {
     let ForAges = new ForAgesModel(req.body);
     await User.save();
@@ -31,7 +28,6 @@ router.post("/", async (req, res) => {
 })
 
 router.put("/:id", async(req,res) => {
- 
   try {
    let id = req.params.id;
    let data = await ForAgesModel.updateOne({_id:id},req.body);

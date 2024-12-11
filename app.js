@@ -8,14 +8,9 @@ require('./DB/mongoConnection');
 const{routesInit}=require("./Routes/configRoutes");
 const path=require('path');
 const cors=require("cors");
-// const corsOptions = {
-//   origin:"https://mshkhqvlnv.onrender.com/",
-//   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",};
-// app.use(cors(corsOptions));
 app.use(cors());
 const bodyParser=require("body-parser");
 app.use(bodyParser.json());
-
 app.use(myExpress.static(path.join(__dirname,"public")));
 routesInit(app);
 app.listen(port, () => {

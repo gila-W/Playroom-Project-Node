@@ -7,3 +7,4 @@ let closetschema = new mongoose.Schema({
   closetLocation: String,
 });
 exports.ClosetModel = mongoose.model("Closets", closetschema);
+

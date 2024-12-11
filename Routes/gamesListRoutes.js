@@ -12,6 +12,7 @@ router.get("/", async(req,res) => {
     res.status(502).json({err})
   }
 })
+
 router.get("/single/:id", async(req,res) => {
   try{
     const id = req.params.id
@@ -23,6 +24,7 @@ router.get("/single/:id", async(req,res) => {
     res.status(502).json({err})
   }
 });
+
 router.post("/", async (req, res) => {
   try {
     let GamesList = new GamesListModel(req.body);
@@ -34,10 +36,11 @@ router.post("/", async (req, res) => {
     res.status(502).json( {err})
   }
 });
+
 router.put("/:id", async (req, res) => {
   try {
     let id = req.params.id;
-    let additionalParam = req.body.bool; // Access additional parameter
+    let additionalParam = req.body.bool;
     let identifier;
     if (additionalParam === true) {
        identifier = { Id: id };

@@ -7,3 +7,4 @@ let forAgeSchema = new mongoose.Schema({
   stickerColor: String,
 });
 exports.ForAgesModel = mongoose.model("ForAges", forAgeSchema);
+

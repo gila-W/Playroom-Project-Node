@@ -20,6 +20,4 @@ exports.routesInit =(app)=>{
     app.use("/closetsRoutes",closetsR);
     app.use("/forAgesRoutes",forAgesR);
     app.use("/finesForMissingPartsRoutes",finesForMissingPartsR);
-
-
 }
