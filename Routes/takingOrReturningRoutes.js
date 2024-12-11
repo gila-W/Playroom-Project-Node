@@ -2,13 +2,10 @@ const express = require("express");
 const { TakingOrReturningModel} = require("../Models/takingOrReturning");
 const router = express.Router();
 
-
-
 // Function to delete old records
 const deleteOldRecords = async () => {
   const twoYearsAgo = new Date();
   twoYearsAgo.setFullYear(twoYearsAgo.getFullYear() - 2);
-  
   try {
     await TakingOrReturningModel.deleteMany({ TakingDate: { $lt: twoYearsAgo } });
     console.log("Old records deleted successfully.");
@@ -16,11 +13,7 @@ const deleteOldRecords = async () => {
     console.error("Error deleting old records:", err);
   }
 };
-
-// Call the function (you can also set this to run periodically)
 deleteOldRecords();
-
-
 
 router.get("/", async(req,res) => {
   try{
@@ -46,7 +39,6 @@ router.get("/single/:id", async(req,res) => {
 })
 
 router.post("/", async(req,res) => {
-  
   try {
     let TakingOrReturning = new TakingOrReturningModel(req.body);
     await TakingOrReturning.save();
@@ -58,8 +50,7 @@ router.post("/", async(req,res) => {
   }
 })
 
-router.put("/:id", async(req,res) => {
-  
+router.put("/:id", async(req,res) => { 
   try {
    let id = req.params.id;
    await TakingOrReturningModel.updateOne({ReturnID:id},{$set:req.body});

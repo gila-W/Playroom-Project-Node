@@ -44,7 +44,7 @@ router.put("/:id", async(req,res) => {
 router.delete("/:id", async (req, res) => {
   try {
     const id = req.params.id;
-    const { locationToRemove } = req.body; // Assuming you send the location to remove in the request body
+    const { locationToRemove } = req.body; 
     const closet = await ClosetModel.findById(id);
     closet.emptyPlace = closet.emptyPlace.filter((place) => place !== locationToRemove);
     await closet.save();

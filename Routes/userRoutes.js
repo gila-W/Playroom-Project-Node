@@ -15,23 +15,19 @@ router.get("/", async(req,res) => {
   }
 })
 
-
 router.post("/", async (req, res) => {
- 
   try {
     let User = new UserModel(req.body);
     await User.save();
     res.json(User)
   }
   catch (err) {
- 
     console.log(err);
     res.status(502).json({ err })
   }
 })
 
 router.put("/:id", async(req,res) => {
- 
   try {
    let id = req.params.id;
    let data = await UserModel.updateOne({_id:id},req.body);

@@ -5,3 +5,4 @@ let tipesOfGamesschema = new mongoose.Schema({
   Age: String,
 });
 exports.TipesOfGameModel = mongoose.model("TipesOfGames", tipesOfGamesschema);
+

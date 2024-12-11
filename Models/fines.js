@@ -6,3 +6,4 @@ Type:String,
 PriceOfFine:String,
 })
 exports.FineModel = mongoose.model("Fines",fineSchema)
+

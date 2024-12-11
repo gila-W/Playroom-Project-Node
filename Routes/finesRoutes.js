@@ -14,7 +14,6 @@ router.get("/", async(req,res) => {
 })
 
 router.post("/", async(req,res) => {
-  
   try {
     let fines = new FineModel(req.body);
     await fines.save();
@@ -27,7 +26,6 @@ router.post("/", async(req,res) => {
 })
 
 router.put("/:id", async(req,res) => {
- 
   try {
    let id = req.params.id;
    let data = await FineModel.updateOne({_id:id},req.body);
