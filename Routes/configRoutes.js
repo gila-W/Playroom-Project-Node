@@ -8,6 +8,7 @@ const finesR=require('./finesRoutes');
 const closetsR=require('./closetsRoutes');
 const forAgesR=require('./forAgesRoutes');
 const finesForMissingPartsR=require('./finesForMissingPartsRoutes');
+const debtsR=require('./debtsRoutes');
 
 exports.routesInit =(app)=>{
     app.use("/",indexR);
@@ -20,4 +21,6 @@ exports.routesInit =(app)=>{
     app.use("/closetsRoutes",closetsR);
     app.use("/forAgesRoutes",forAgesR);
     app.use("/finesForMissingPartsRoutes",finesForMissingPartsR);
+    app.use("/debtsRoutes",debtsR);
+
 }
