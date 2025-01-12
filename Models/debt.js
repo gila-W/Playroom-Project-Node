@@ -7,6 +7,7 @@ date:{
     type: Date,
     default: Date.now,
   },
-})
+},  { versionKey: false }
+)
 exports.DebtModel = mongoose.model("Debt",debtSchema)
 
