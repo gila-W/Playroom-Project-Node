@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 let debtSchema = new mongoose.Schema(
   {
     userCode: String,
+    userName: String,
     debt: Number,
     date: {
       type: Date,
