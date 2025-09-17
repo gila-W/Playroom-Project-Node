@@ -1,14 +1,10 @@
 const express = require("express");
-const {
-  GamesWithMissingPartsModel,
-} = require("../Models/gamesWithMissingParts");
-const app = express();
+const { ActuliGameModel } = require("../Models/actuliGame");
 const router = express.Router();
-app.use(express.json());
 
 router.get("/", async (req, res) => {
   try {
-    let data = await GamesWithMissingPartsModel.find({});
+    let data = await ActuliGameModel.find({});
     res.json({ data });
   } catch (err) {
     console.log(err);
@@ -18,9 +14,9 @@ router.get("/", async (req, res) => {
 
 router.post("/", async (req, res) => {
   try {
-    let Game = new GamesWithMissingPartsModel(req.body);
-    await Game.save();
-    res.json(Game);
+    let actuli = new ActuliGameModel(req.body);
+    await actuli.save();
+    res.json(actuli);
   } catch (err) {
     console.log(err);
     res.status(502).json({ err });
@@ -30,9 +26,8 @@ router.post("/", async (req, res) => {
 router.put("/:id", async (req, res) => {
   try {
     let id = req.params.id;
-    await GamesWithMissingPartsModel.replaceOne({ _id: id }, req.body);
-    let updateObject = await GamesWithMissingPartsModel.findOne({ _id: id });
-    res.json(updateObject);
+    let data = await ActuliGameModel.updateOne({ _id: id }, req.body);
+    res.json(data);
   } catch (err) {
     console.log(err);
     res.status(502).json({ err });
@@ -42,7 +37,7 @@ router.put("/:id", async (req, res) => {
 router.delete("/:id", async (req, res) => {
   try {
     let id = req.params.id;
-    let data = await GamesWithMissingPartsModel.deleteOne({ _id: id });
+    let data = await ActuliGameModel.deleteOne({ _id: id });
     res.json(data);
   } catch (err) {
     console.log(err);

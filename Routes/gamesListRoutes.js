@@ -8,6 +8,7 @@ router.get("/", async(req,res) => {
     res.json(data);
   }
   catch(err){
+
     console.log(err);
     res.status(502).json({err})
   }
@@ -16,7 +17,7 @@ router.get("/", async(req,res) => {
 router.get("/single/:id", async(req,res) => {
   try{
     const id = req.params.id
-    let data = await GamesListModel.findOne({Id:id});
+    let data = await GamesListModel.findOne({_id:id});
     res.json(data);
   }
   catch(err){
@@ -43,9 +44,9 @@ router.put("/:id", async (req, res) => {
     let additionalParam = req.body.bool;
     let identifier;
     if (additionalParam === true) {
-       identifier = { Id: id };
+       identifier = { _id: id };
     } else {
-       identifier = { GameCode: id };
+       identifier = { _id: id };
     }
     await GamesListModel.updateOne(identifier,{$set:req.body});
     let updateObject=await GamesListModel.findOne(identifier);

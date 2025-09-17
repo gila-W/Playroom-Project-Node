@@ -1,7 +1,7 @@
 "use strict"
 const myExpress = require('express');
 const app = myExpress();
-const port = 5000;
+const port = 5001;
 const router=myExpress.Router();
 const http=require('http')
 require('./DB/mongoConnection');
@@ -18,5 +18,4 @@ app.listen(port, () => {
   });
 const server=http.createServer(app);
 app.get("/",(req,res)=>{
-    // res.send("<html><h1>מחובר</h1></html>")
         })

@@ -1,8 +1,7 @@
 const mongoose = require("mongoose");
 
-usersschema = new mongoose.Schema(
+const usersschema = new mongoose.Schema(
   {
-    userCode: String,
     userName: String,
     userDate: String,
     phone: String,
@@ -15,7 +14,10 @@ usersschema = new mongoose.Schema(
     checkNumber: String,
     branchNumber: String,
     email: String,
+    cityCode: { type: String }, // <--- השדה החדש
+
   },
   { versionKey: false }
 );
+
 exports.UserModel = mongoose.model("Users", usersschema);
