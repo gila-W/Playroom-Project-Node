@@ -5,5 +5,6 @@ async function main() {
   await mongoose.connect('mongodb+srv://yafa-f:y029990694@cluster0.nohaw4m.mongodb.net/playroomDB');
   console.log("mongo connect");
 }
+
 exports.default=mongoose;
 
