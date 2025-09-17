@@ -1,10 +1,12 @@
 const mongoose = require('mongoose');
+
+require('dotenv').config();
+
 main().catch(err => console.log(err));
 
 async function main() {
-  await mongoose.connect('mongodb+srv://yafa-f:y029990694@cluster0.nohaw4m.mongodb.net/playroomDB');
+  await mongoose.connect(process.env.MONGO_URI);
   console.log("mongo connect");
 }
-
 exports.default=mongoose;
 
