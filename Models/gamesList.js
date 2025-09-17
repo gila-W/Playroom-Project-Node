@@ -2,21 +2,25 @@ const mongoose = require("mongoose");
 
 let gamesListschema = new mongoose.Schema(
   {
-    Id: String,
-    GameCode: Number,
-    ClosetNumber: String,
-    PlaceInCloset: String,
-    GameName: String,
-    GameTypeCode: String,
-    Parts: Array,
-    AgeCode: String,
-    CurrentStateOfGame: String,
-    Location: String,
-    PrintSticker: Boolean,
-    HaveComplementaryGame: String,
-    IsAvailable: String,
-    Comment: String,
+    GameName: { type: String },
+    GameType: [{ type: String }],
+    GameSkills: [{ type: String }],
+    ActualiGame: [{ type: String }],
+    ClosetNumber: { type: String },
+    Age: [{ type: String }],
+    IsAvailable: { type: Boolean },
+    CurrentStateOfGame: { type: String },
+    Parts: [
+      {
+        "שם החלק": { type: String },
+        "כמות": { type: Number },
+      },
+    ],
+    HaveComplementaryGame: { type: Boolean },
+    Comment: { type: String },
+    cityCode: { type: String }, // <--- השדה החדש
   },
   { versionKey: false }
 );
-exports.GamesListModel = mongoose.model("GamesList", gamesListschema);
+
+exports.GamesListModel = mongoose.model("games", gamesListschema);

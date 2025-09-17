@@ -18,7 +18,7 @@ deleteOldRecords();
 router.get("/", async(req,res) => {
   try{
     let data = await TakingOrReturningModel.find({});
-    res.json(data);
+    res.json(data );
   }
   catch(err){
     console.log(err);

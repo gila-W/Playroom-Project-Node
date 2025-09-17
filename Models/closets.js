@@ -1,12 +1,9 @@
 const mongoose = require("mongoose");
-
-let closetschema = new mongoose.Schema(
+closetTypeSchema = new mongoose.Schema(
   {
-    closetCode: String,
-    IsKlinait: Boolean,
-    emptyPlace: Array,
-    closetLocation: String,
+    closet: { type: String },
   },
   { versionKey: false }
 );
-exports.ClosetModel = mongoose.model("Closets", closetschema);
+
+exports.ClosetModel = mongoose.model("Closet", closetTypeSchema);
