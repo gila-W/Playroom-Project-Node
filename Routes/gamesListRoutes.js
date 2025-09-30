@@ -38,25 +38,38 @@ router.post("/", async (req, res) => {
   }
 });
 
+// router.put("/:id", async (req, res) => {
+//   try {
+//     let id = req.params.id;
+  
+//        let data = await GamesListModel.updateOne({_id:id},req.body);
+//       res.json(data);
+//    }
+//    catch(err) {
+//      console.log(err);
+//      res.status(502).json( {err})
+//    }
+// })
 router.put("/:id", async (req, res) => {
   try {
-    let id = req.params.id;
-    let additionalParam = req.body.bool;
-    let identifier;
-    if (additionalParam === true) {
-       identifier = { _id: id };
-    } else {
-       identifier = { _id: id };
+    const { id } = req.params;
+
+    await GamesListModel.updateOne({ _id: id }, req.body);
+
+    // להביא את המשחק המעודכן
+    const updatedGame = await GamesListModel.findById(id);
+
+    if (!updatedGame) {
+      return res.status(404).json({ message: "Game not found" });
     }
-    await GamesListModel.updateOne(identifier,{$set:req.body});
-    let updateObject=await GamesListModel.findOne(identifier);
-    res.json(updateObject)
-   }
-   catch(err) {
-     console.log(err);
-     res.status(502).json( {err})
-   }
-})
+
+    res.json(updatedGame); // 👈 מחזיר את האובייקט המעודכן עצמו
+  } catch (error) {
+    console.error("Error updating game:", error);
+    res.status(500).json({ message: "Server error" });
+  }
+});
+
 
 router.delete("/:id", async(req,res) => {
   try {

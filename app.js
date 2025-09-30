@@ -7,6 +7,9 @@ const http=require('http')
 require('./DB/mongoConnection');
 const{routesInit}=require("./Routes/configRoutes");
 const path=require('path');
+const fs = require('fs');
+require('dotenv').config();
+
 const cors=require("cors");
 app.use(cors());
 const bodyParser=require("body-parser");
@@ -19,3 +22,12 @@ app.listen(port, () => {
 const server=http.createServer(app);
 app.get("/",(req,res)=>{
         })
+let clientBuildDir = path.join(__dirname, '..', 'client', 'build');
+if (!fs.existsSync(clientBuildDir)) clientBuildDir = path.join(__dirname, '..', 'client', 'dist');
+
+if (fs.existsSync(clientBuildDir)) {
+  app.use(myExpress.static(clientBuildDir));
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(clientBuildDir, 'index.html'));
+  });
+}
